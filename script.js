@@ -7,7 +7,7 @@ const modalBackground = document.getElementById("modal-background");
 
 // variables
 let userText = "";
-let errorCount = 0;
+let errorCount = [];
 let startTime;
 let questionText = "";
 
@@ -18,7 +18,7 @@ fetch("./texts.json")
     questionText = data[Math.floor(Math.random() * data.length)];
     question.innerHTML = questionText;
   });
-
+ 
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
   const newLetter = e.key;
@@ -26,13 +26,14 @@ const typeController = (e) => {
   // Handle backspace press
   if (newLetter == "Backspace") {
     userText = userText.slice(0, userText.length - 1);
+    console.log(userText)
     return display.removeChild(display.lastChild);
   }
 
   // these are the valid character we are allowing to type
   const validLetters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
-
+  
   // if it is not a valid character like Control/Alt then skip displaying anything
   if (!validLetters.includes(newLetter)) {
     return;
@@ -42,10 +43,16 @@ const typeController = (e) => {
 
   const newLetterCorrect = validate(newLetter);
 
-  if (newLetterCorrect) {
+  if (newLetterCorrect ) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
-  } else {
+  } 
+  else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    if (condition) {
+      
+    } else {
+      
+    }
   }
 
   // check if given question text is equal to user typed text
