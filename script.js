@@ -7,7 +7,7 @@ const modalBackground = document.getElementById("modal-background");
 
 // variables
 let userText = "";
-let errorCount = [];
+let errorCount = [0];
 let startTime;
 let questionText = "";
 
@@ -43,18 +43,17 @@ const typeController = (e) => {
 
   const newLetterCorrect = validate(newLetter);
 
+
   if (newLetterCorrect ) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } 
   else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
-    if (condition) {
-      
-    } else {
-      
-    }
   }
-
+  if(newLetterCorrect === false){
+    const correctLetter = '1'
+    console.log(correctLetter)
+  }
   // check if given question text is equal to user typed text
   if (questionText === userText) {
     gameOver();
